@@ -28,8 +28,10 @@ class Heros : public Personnage {
 
 
     Heros(string name, int lvl = 1) : Personnage(), niveau(lvl) {
-        Armes[i] = new Arme ("Branche d'arbre", 1, 2);
-        Armures[i] = new Armure ("Tutu rose", 1, 2);
+        Arme arme("Branche d'arbre", 1, 2);
+        Armure armure("Tutu rose", 1, 2);
+        Armes.push_back(&arme);
+        Armures.push_back(&armure);
         this->degats = (niveau-1)*2;
         this->pv = (niveau-1)*5 + 10;
         this->defense = niveau ;
@@ -60,10 +62,89 @@ class Ennemi : public Personnage {
     int gold_loot;
     string msg_attaque, msg_mort;
 
-    Ennemi(char c, int val_x, int val_y) {}
+    Ennemi(char c, int val_x, int val_y) {
+    switch ( c ) {
+	case 'C' :
+		Personnage(5,2);
+		x=val_x;
+		y=val_y;
+		xp_loot = 2;
+		gold_loot = 2;
+		msg_attaque="Cafard : *Bruit menaçant de cafard*";
+		msg_mort="*Bruit d'agonie de cafard*";
+		break;
+    case 'J' :
+		Personnage(30, 1);
+		x=val_x;
+		y=val_y;
+		xp_loot = 1;
+		gold_loot = 1;
+		msg_attaque="JPG :...";
+		msg_mort="...";
+		break;
+	case 'V' :
+		Personnage(20, 7);
+		x=val_x;
+		y=val_y;
+		xp_loot = 5;
+		gold_loot = 5;
+		msg_attaque="PAM : C’est moi qui l’aurai cette chambre !";
+		msg_mort="Apeuré, il rentre chez lui en 2h30";
+		break;
 
-    /* Ennemi(int pt_vie = 5, int dgt = 3, string message_attaque = "", string message_mort = "", int val_x = 0, int val_y = 0, int experience_donne = 1, int gold_loot = 2): 
-    Personnage(pt_vie, dgt), , msg_attaque(message_attaque), msg_mort(message_mort) {} */
+	case 'O' :
+		Personnage(15, 7);
+		x=val_x;
+		y=val_y;
+		xp_loot = 4;
+		gold_loot = 4;
+		msg_attaque="Camin : Soumets toi devant la moustache du chef !";
+		msg_mort="Putain de Cyprien";
+		break;
+
+	case 'A':
+		Personnage(20,5);
+		x=val_x;
+		y=val_y;
+		xp_loot =4;
+		gold_loot = 5;
+		msg_attaque="Aline: Je veux ton loyer, donne moi ton loyer";
+		msg_mort="Vous l’achevez avec un four";
+		break;
+
+    case 'P' :
+		Personnage(10,4);
+		x=val_x;
+		y=val_y;
+		xp_loot = 4;
+		gold_loot = 4;
+		msg_attaque="Picheur : Tu viens à Minas-Telien ce soir ?";
+		msg_mort="Y’a une interne ce soir ?";
+		break;
+
+    case 'B' :
+		Personnage(15,5);
+		x=val_x;
+		y=val_y;
+		xp_loot = 5;
+		gold_loot = 5;
+		msg_attaque="Bencheur : Je vais t’exploser comme le bar des Camin";
+		msg_mort="Bon ben go BDL";
+		break;
+
+    case '6' :
+		Personnage(15,7);
+		x=val_x;
+		y=val_y;
+		xp_loot = 4;
+		gold_loot = 4;
+		msg_attaque="P16 : Je vais te montrer la colère des anciens";
+		msg_mort="De toute façon c’était mieux avant";
+		break;
+
+        }
+    }
+    
 
     string attaque_hero(Heros &cible) {
         if ((this->degats - cible.defense)>=0) {
@@ -71,10 +152,16 @@ class Ennemi : public Personnage {
             return "Ouch";
         }
     }
-    ~Ennemi () {
-        
-    }
+    ~Ennemi () {}
 
 };
 
 #endif
+
+
+
+
+
+
+/* Ennemi(int pt_vie = 5, int dgt = 3, string message_attaque = "", string message_mort = "", int val_x = 0, int val_y = 0, int experience_donne = 1, int gold_loot = 2): 
+    Personnage(pt_vie, dgt), , msg_attaque(message_attaque), msg_mort(message_mort) {} */
