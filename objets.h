@@ -3,7 +3,7 @@
 using namespace std;
 
 
-class Item {
+class Objet {
     protected :
     string nom {};
     public :
@@ -11,7 +11,7 @@ class Item {
 
 };
 
-class Potion : public Item {
+class Potion : public Objet {
     private :
     int pv;
     int prix;
@@ -20,7 +20,7 @@ class Potion : public Item {
     Potion (string n,int p,int pr): Item(n), prix(pr),pv(p){}
 };
 
-class Arme : public Item {
+class Arme : public Objet {
     private :
     int force;
     int prix;
@@ -31,7 +31,7 @@ class Arme : public Item {
 
 };
 
-class Armure : public Item {
+class Armure : public Objet {
     private :
     int pa;
     int prix;
