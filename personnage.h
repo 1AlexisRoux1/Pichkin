@@ -60,17 +60,17 @@ class Heros : public Personnage {
         return "Tiens, prends toi ça !";
     } */
 
-    void equiper_arme(Arme* &nouvelle_arme) {
+    void equiper_arme(Arme* nouvelle_arme) {
         i_arme++;
-        Armes.push_back(&nouvelle_arme);
+        Armes.push_back(nouvelle_arme);
     } 
-    void equiper_armure(Armure* &nouvelle_armure) {
+    void equiper_armure(Armure* nouvelle_armure) {
         i_armure++;
-        Armures.push_back(&nouvelle_armure);
+        Armures.push_back(nouvelle_armure);
     } 
-    void consommer_potion(Arme* &nouvelle_potion) {
+    void consommer_potion(Potion* nouvelle_potion) {
         i_potion++;
-        Potions.push_back(&nouvelle_potion);
+        Potions.push_back(nouvelle_potion);
     } 
 
 };
@@ -168,11 +168,11 @@ class Ennemi : public Personnage {
         if ((this->degats - cible.defense)>=0) {
             cible.pv = cible.pv - (this->degats -cible.defense);
             if (cible.pv == 0) {
-                return "YOU ARE DEAD ! MuahAHahAhaHAHAHhahahhAHa"
+                return "YOU ARE DEAD ! MuahAHahAhaHAHAHhahahhAHa";
             }
         }
     }
-    
+
     /* string mort_ennemi(Heros &perso) {
             perso.xp = perso.xp + this->xp_loot;
             perso.gold = perso.gold + this->gold_loot;
