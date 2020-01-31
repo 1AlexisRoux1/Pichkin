@@ -18,11 +18,10 @@ class Objet {
 };
 
 class Potion : public Objet {
-    private :
+    
+    public :
     int soin;
     int prix;
-
-    public :
     vector<vector<string>> tableau={{"pomme","potion mystère"},{"pomme","pates","potion mystère"},{"super potion","potion","potion mystère"},{"super potion mystère"},{"super potion mystère"}};
 
     Potion (string n,int p,int pr): Objet(n), prix(pr),soin(p){}
@@ -64,12 +63,12 @@ class Potion : public Objet {
 };
 
 class Arme : public Objet {
-    private :
+    
+    
+    public :
     int attaque;
     int prix;
     
-
-    public :
     vector<vector<string>> tableau={{"baton","balais à chiotte"},{"baton","dague","poèle"},{"four","oreiller"},{"extincteur","épée"},{"feux d'artifice","palum"}};
     
     Arme(string n , int f, int pr): Objet(n), attaque (f), prix(pr){}
@@ -139,11 +138,10 @@ class Arme : public Objet {
 };
 
 class Armure : public Objet {
-    private :
+    
+    public :
     int protection;
     int prix;
-
-    public :
     
     vector<vector<string>> tableau={{"drap"},{"drap","t-shirt centrale-supelec"},{"pull de la mine","t-shirt centrale-supelec"},{"costume Colvert","pull de la mine"},{"costume Colvert","pull de la mine"}};
     Armure (string n, int p, int pr) :Objet(n), protection(p),prix(pr){}
