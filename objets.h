@@ -9,9 +9,9 @@ using namespace std;
 
 
 class Objet {
-    protected :
-    string nom {};
+    
     public :
+    string nom {};
     Objet (string n): nom(n){}
     Objet(){}
 
