@@ -23,7 +23,7 @@ class Potion : public Objet {
     int soin;
     int prix;
     string effet;
-    vector<vector<string>> tableau={{"pomme","potion mystère"},{"pomme","pates","potion mystère"},{"super potion","potion","potion mystère"},{"super potion mystère"},{"super potion mystère"}};
+    vector<vector<string>> tableau={{"pomme","potion mystère"},{"pomme","pates","potion mystère"},{"super potion","potion mystère"},{"super potion mystère"},{"super potion mystère"}};
 
     Potion (string n,int p,int pr): Objet(n), prix(pr),soin(p){}
 
