@@ -56,7 +56,7 @@ class Carte{
             mvwaddch(win, y, x, terrain[x][y]);
             }
         }
-        refresh() ;
+        wrefresh(win) ;
     }
     Map (int n, Hero h): etage{n},hero{h} {
         image["heros"] = 'H';
@@ -65,6 +65,7 @@ class Carte{
         image["sol_couloir"] = '#';
         image["porte"] = '+';
         image["escalier"] = '=';
+        image["arme"] = '!';
         terrain = lecture(n);
         x_max = terrain.size;
         y_max = terrain[0].size;
@@ -111,6 +112,8 @@ class Carte{
                 heros.sol = image["escalier"];
                 terrain[heros.x][heros.y] = image["escalier"];
                 return "Je suis sur un escalier !";
+            case image["arme"]:
+                return "Arme";
         }
 
     }
@@ -134,6 +137,6 @@ class Carte{
             return 0;
         }
     }
-}
+};
 
 #endif
