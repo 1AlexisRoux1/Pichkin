@@ -1,7 +1,9 @@
+#ifndef BOUTIQUE
+
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include "items.h"
+#include "objets.h"
 #include "personnage.h"
 using namespace std;
 
@@ -29,3 +31,5 @@ class Boutique{
     }
 
 };
+
+#endif

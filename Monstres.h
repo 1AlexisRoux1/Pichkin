@@ -1,3 +1,4 @@
+#ifndef MONSTRES
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -13,7 +14,7 @@ class Picheur : public Ennemi {
     Picheur(int x,int y):Ennemi(10,4,"Tu viens à Minas Telien ce soir?","Y'a une externe ce soir?",x,y,3,3)
 };
 class Bencheur : public Ennemi {
-    Bencheur(int x,int y):Ennemi(15,5,"Je vais t'exploser comme le bar des Camin","",x,y,4,4)
+    Bencheur(int x,int y):Ennemi(15,5,"Je vais t'exploser comme le bar des Camin","Bon ben go BDL",x,y,4,4)
 };
 class 3A  : public Ennemi{
     3A(int x,int y):Ennemi(20,6,"Je vais te montrer la colère des Anciens", "De toute façon c'était mieux avant",x,y,5,5)
@@ -28,4 +29,4 @@ class PAM: public Ennemi{
     PAM(int x, int y): Ennemi(20,7,"C'est moi qui l'aurai cette chambre!","",x,y,5,5)
 };
 
-
+#endif
