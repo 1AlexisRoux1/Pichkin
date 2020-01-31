@@ -22,6 +22,7 @@ class Potion : public Objet {
     public :
     int soin;
     int prix;
+    string effet;
     vector<vector<string>> tableau={{"pomme","potion mystère"},{"pomme","pates","potion mystère"},{"super potion","potion","potion mystère"},{"super potion mystère"},{"super potion mystère"}};
 
     Potion (string n,int p,int pr): Objet(n), prix(pr),soin(p){}
@@ -34,28 +35,42 @@ class Potion : public Objet {
             Objet("pomme");
             soin =2;
             prix=2;
+            effet= "vous mangez une pomme, cela vous rend 2 points de vie";
             }
         if (a=="potion mystère"){
             Objet("potion mystère");
             int y = rand()%10 -3;
             soin =y;
-            prix=1;}
+            prix=1;
+            if (y>=0){
+                effet="vous buvez de la potion mystère : vous gagnez"+to_string(y)+" points de vie";}
+            if (y<0){
+                effet="vous prennez de la potion mystère : pas de chance vous perdez "+to_string(y)+" point de vie";}
+            }
+
             
         if(a=="pates"){
             Objet("pates");
             soin=5;
-            prix=10;}
+            prix=10;
+            effet="vous mangez un plat de pates, vous gagnez 5 points de vie";}
             
         if(a=="super potion"){
             Objet("super potion");
             soin =10;
-            prix=20;}
+            prix=20;
+            effet="vous prennez de la super potion, vous gagnez 10 points de vie";}
             
         if(a=="super potion mystère"){
             Objet("super potion mystère");
             int y = rand()%20 -10;
             soin=8;
-            prix=16;}
+            prix=16;
+            if (y>=0){
+                effet="vous buvez de la super potion mystère : vous gagnez"+to_string(y)+" points de vie";}
+            if (y<0){
+                effet="vous prennez de la potion mystère : pas de chance vous perdez "+to_string(y)+" point de vie";}
+        }
             
                 
         
