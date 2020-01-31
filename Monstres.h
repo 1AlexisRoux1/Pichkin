@@ -8,7 +8,7 @@ class Aline : public Ennemi {
     Aline(int x,int y): Ennemi(20,5,"Je veux ton loyer, donne moi ton loyer","Vous l'achevez avec un four",x,y,5,5){};
 };
 class Cafard : public Ennemi {
-    Cafard(int x,int y): Ennemi(5,1, "*Bruit menaçant de cafard*", "*Bruit d'agonie de cafard*",x,y,2,2){};
+    Cafard(int x,int y): Ennemi(5,2, "*Bruit menaçant de cafard*", "*Bruit d'agonie de cafard*",x,y,2,2){};
 };
 class Picheur : public Ennemi {
     Picheur(int x,int y):Ennemi(10,4,"Tu viens à Minas Telien ce soir?","Y'a une externe ce soir?",x,y,3,3){};
