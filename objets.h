@@ -178,12 +178,6 @@ class Armure : public Objet {
     
 };
 
-int main(){
-
-    //Armure a1 ("armure",1,10);
-
-    return 0;
-};
 
 
 #endif
