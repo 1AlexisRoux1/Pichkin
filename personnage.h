@@ -6,7 +6,6 @@
 #include "objets.h"
 #include <string>
 #include <cstdlib>
-using  namespace std;
 
 class Personnage {
     public:
@@ -16,9 +15,11 @@ class Personnage {
     Personnage(int pt_vie = 10, int dgt = 1, int def = 0) : pv(pt_vie), degats(dgt), defense(def) {}
 };
 
+
+class Ennemi;
 class Heros : public Personnage {
     public:
-    string nom;
+    std::string nom;
     int niveau, gold, xp;
     int chance_cc;
     int i_arme = 0;
@@ -29,7 +30,7 @@ class Heros : public Personnage {
     vector<Potion*> Potions;
 
 
-    Heros(string name, int lvl = 1) : Personnage(), niveau(lvl) {
+    Heros(std::string name, int lvl = 1) : Personnage(), niveau(lvl) {
         Arme arme("Branche d'arbre", 1, 2);
         Armure armure("Tutu rose", 1, 2);
         Armes.push_back(&arme);
@@ -46,19 +47,8 @@ class Heros : public Personnage {
         this->pv = (niveau-1)*5 + 10;
         this->defense = niveau*1.5 ;
     }
-
-    /* string attaque_ennemi(Personnage &cible) {
-        int pt_bonus = 0;
-        int nb_rand = rand();
-        if (nb_rand >= (1-chance_cc)) {
-            int pt_bonus = 1;
-        }
-        cible.pv = cible.pv - (this->degats + Armes[i_arme]->attaque + pt_bonus);
-        if (cible.pv == 0) {
-            return cible.mort_ennemi(this);
-        }
-        return "Tiens, prends toi ça !";
-    } */
+    
+    std::string attaque_ennemi(Ennemi* cible);
 
     void equiper_arme(Arme* nouvelle_arme) {
         i_arme++;
@@ -68,7 +58,7 @@ class Heros : public Personnage {
         i_armure++;
         Armures.push_back(nouvelle_armure);
     } 
-    void consommer_potion(Potion* nouvelle_potion) {
+    void ramasser_potion(Potion* nouvelle_potion) {
         i_potion++;
         Potions.push_back(nouvelle_potion);
     } 
@@ -79,7 +69,7 @@ class Ennemi : public Personnage {
     public:
     int xp_loot;
     int gold_loot;
-    string msg_attaque, msg_mort;
+    std::string msg_attaque, msg_mort;
 
     Ennemi(char c, int val_x, int val_y) {
         switch ( c ) {
@@ -163,22 +153,27 @@ class Ennemi : public Personnage {
 
         }
     }
+
     
-    string attaque_hero(Heros &cible) {
+    std::string attaque_hero(Heros &cible) {
         if ((this->degats - cible.defense)>=0) {
             cible.pv = cible.pv - (this->degats -cible.defense);
             if (cible.pv == 0) {
                 return "YOU ARE DEAD ! MuahAHahAhaHAHAHhahahhAHa";
             }
         }
+        else{
+            return "Vous êtes invincible.";
+        }
+        
     }
 
-    /* string mort_ennemi(Heros &perso) {
+    std::string mort_ennemi(Heros &perso) {
             perso.xp = perso.xp + this->xp_loot;
             perso.gold = perso.gold + this->gold_loot;
-            return "Tu as gagné" + to_string(xp_loot) + "points d'expérience et" + to_string(gold_loot) + "gold."
+            return "Tu as gagné" + to_string(xp_loot) + "points d'expérience et" + to_string(gold_loot) + "gold.";
         }
-    */
+    
 
     ~Ennemi () {}
 
