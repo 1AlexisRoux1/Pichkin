@@ -56,6 +56,6 @@ class Ennemi : public Personnage {
     void attaque_hero(Heros cible) {
         cible.pv = cible.pv - (this->degats)
     }
-}
+};
 
 #endif
