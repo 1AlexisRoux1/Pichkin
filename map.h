@@ -1,16 +1,21 @@
+#ifndef CARTE_H
+#define CARTE_H
+
 #include<iostream>
 #include<vector>
 #include<fstream>
 #include<ncurses.h>
 #include<map>
 #include<string>
+#include"personnage.h"
+#include"Monstres.h"
+#include"objets.h"
 
 using namespace std;
 
-
-class Map{
+class Carte{
     public:
-        int num;
+        int etage;
         vector<vector<char>> terrain;
         vector<Ennemi> ennemis;
         Heros heros;
@@ -53,10 +58,13 @@ class Map{
         }
         refresh() ;
     }
-    Map (int n, Hero h): num{n},hero{h} {
-        image["heros"] = 'H'
-        image["cafard"] = 'C'
-        image["sol_salle"] = '.'
+    Map (int n, Hero h): etage{n},hero{h} {
+        image["heros"] = 'H';
+        image["cafard"] = 'C';
+        image["sol_salle"] = '.';
+        image["sol_couloir"] = '#';
+        image["porte"] = '+';
+        image["escalier"] = '=';
         terrain = lecture(n);
         x_max = terrain.size;
         y_max = terrain[0].size;
@@ -71,17 +79,61 @@ class Map{
             }
         }
     }
-    void haut(){
+    string deplacement(int x_rel, int y_rel){
         int x = heros.x;
         int y = heros.y;
-        switch (terrain[x-1][y]){
+        switch (terrain[x + x_rel][y + y_rel]){
             case image["sol_salle"]:
-                heros.x --;
-                terrain[x][y] = image["sol_salle"];
-                terrain[x-1][y] = image["heros"];
-            case 
+                heros.x += x_rel;
+                heros.y += y_rel;
+                terrain[x][y] = heros.sol;
+                heros.sol = image["sol_salle"];
+                terrain[heros.x][heros.y] = image["heros"];
+                return "Je suis dans une salle !";
+            case image["sol_couloir"]:
+                heros.x += x_rel;
+                heros.y += y_rel;
+                terrain[x][y] = heros.sol;
+                heros.sol = image["sol_couloir"];
+                terrain[heros.x][heros.y] = image["heros"];
+                return "Je suis dans un couloir !";
+            case image["porte"]:
+                heros.x += x_rel;
+                heros.y += y_rel;
+                terrain[x][y] = heros.sol;
+                heros.sol = image["porte"];
+                terrain[heros.x][heros.y] = image["heros"];
+                return "Je passe une porte !";
+            case image["escalier"]:
+                heros.x += x_rel;
+                heros.y += y_rel;
+                terrain[x][y] = heros.sol;
+                heros.sol = image["escalier"];
+                terrain[heros.x][heros.y] = image["escalier"];
+                return "Je suis sur un escalier !";
         }
 
     }
-
+    string haut(){
+        return deplacement(-1, 0);
+    }
+    string bas(){
+        return deplacement(1, 0);
+    }
+    string gauche(){
+        return deplacement (0,-1);
+    }
+    string droite(){
+        return deplacement (0, 1);
+    }
+    int escalier(){
+        if (terrain[heros.x][heros.y] = image["escalier"]){
+            return +1;
+        }
+        else {
+            return 0;
+        }
+    }
 }
+
+#endif
