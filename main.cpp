@@ -1,4 +1,3 @@
-
 #include <ncurses.h>
 #include <string>
 #include <map.h>
@@ -23,13 +22,11 @@ int main(){
         switch ch {
           case KEY_LEFT :
             Map.gauche() ; // a changer
-            Map.update(win) ; // il va falloir coder le update dans la classe map tel que on reconstruit l'affichage
-            refresh() ;
+            Map.rafraichir(win) ; // il va falloir coder le update dans la classe map tel que on reconstruit l'affichage
             break ;
           case KEY_RIGHT :
             Map.droite() ;
-            Map.update(win) ;
-            refresh() ;
+            Map.rafraichir() ;
             break ;
         }
         break ;
@@ -42,11 +39,14 @@ int main(){
 }
 
 /*
-#include <ncurses.h>
+void rafraichir(WINDOW* win) {
+  for (int x = 0 ; x<x_max ; x++ ) {
+    for (int y = 0 ; y<y_max ; y++) {
+      mvwaddch(win, y, x, terrain[x][y]);
+    }
+  }
+  refresh() ;
+}
 
-int main {
-  initscr() ;
-  noecho() ;
-  keypad(stdscr, TRUE) ;
 
-}*/
+*/
